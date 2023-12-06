@@ -1,9 +1,9 @@
 package com.crio.shorturl;
 import java.util.*;
 class XUrlImpl implements XUrl{
-    HashMap<String,String>  longToShortMap;
-    HashMap<String,String>  shortToLongMap;
-    HashMap<String,Integer>  hitCountMap;
+    public HashMap<String,String>  longToShortMap;
+    public HashMap<String,String>  shortToLongMap;
+    public HashMap<String,Integer>  hitCountMap;
     private final String alphaString ="ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz"; 
     public XUrlImpl() {
         longToShortMap= new HashMap<>();
@@ -30,7 +30,11 @@ class XUrlImpl implements XUrl{
 
     @Override
     public String registerNewUrl(String longUrl, String shortUrl) {
-        if (!longToShortMap.containsKey(longUrl)) return shortToLongMap.put(longUrl,shortUrl);
+        if (!longToShortMap.containsKey(longUrl)){
+            longToShortMap.put(longUrl,shortUrl);
+            shortToLongMap.put(shortUrl,longUrl);
+            return shortUrl;
+        }
         return null;
     }
 
@@ -55,7 +59,11 @@ class XUrlImpl implements XUrl{
     @Override
     public String delete(String longUrl) {
         // TODO Auto-generated method stub
-        if (longToShortMap.containsKey(longUrl)) longToShortMap.remove(longUrl);
+        if (longToShortMap.containsKey(longUrl)){ 
+            shortToLongMap.remove(shortToLongMap.get(longUrl));
+            longToShortMap.remove(longUrl);
+        }
+
         return null;
     }
     
