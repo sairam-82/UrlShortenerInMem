@@ -30,7 +30,7 @@ class XUrlImpl implements XUrl{
 
     @Override
     public String registerNewUrl(String longUrl, String shortUrl) {
-        if (!longToShortMap.containsKey(longUrl)){
+        if (!longToShortMap.containsKey(longUrl) && !shortToLongMap.containsKey(shortUrl)){
             longToShortMap.put(longUrl,shortUrl);
             shortToLongMap.put(shortUrl,longUrl);
             return shortUrl;
@@ -62,6 +62,7 @@ class XUrlImpl implements XUrl{
         if (longToShortMap.containsKey(longUrl)){ 
             shortToLongMap.remove(shortToLongMap.get(longUrl));
             longToShortMap.remove(longUrl);
+            return null;
         }
 
         return null;
