@@ -53,7 +53,7 @@ class XUrlImpl implements XUrl{
     public Integer getHitCount(String longUrl) {
         // TODO Auto-generated method stub
         if (hitCountMap.containsKey(longUrl)) return hitCountMap.get(longUrl);
-        return null;
+        return 0;
     }
 
     @Override
