@@ -20,6 +20,7 @@ class XUrlImpl implements XUrl{
     }
     @Override
     public String registerNewUrl(String longUrl) {
+        // System.out.println(shortToLongMap);
         if (longToShortMap.containsKey(longUrl)) return longToShortMap.get(longUrl);
         String uString=generateUniqueString();
         String shortUrl="http://short.url/"+uString;
@@ -40,10 +41,12 @@ class XUrlImpl implements XUrl{
 
     @Override
     public String getUrl(String shortUrl) {
-
+        // System.out.println(shortToLongMap);
         if (shortToLongMap.containsKey(shortUrl)){
-            hitCountMap.put(shortToLongMap.get(shortUrl),hitCountMap.getOrDefault(shortUrl, 0)+1);
-            return shortToLongMap.get(shortUrl);
+            String lUrl=shortToLongMap.get(shortUrl);
+            // System.out.println("lUrl : "+lUrl);
+            hitCountMap.put(lUrl,hitCountMap.getOrDefault(lUrl, 0)+1);
+            return lUrl;
         } 
         return null;
 
@@ -60,7 +63,7 @@ class XUrlImpl implements XUrl{
     public String delete(String longUrl) {
         // TODO Auto-generated method stub
         if (longToShortMap.containsKey(longUrl)){ 
-            shortToLongMap.remove(shortToLongMap.get(longUrl));
+            shortToLongMap.remove(longToShortMap.get(longUrl));
             longToShortMap.remove(longUrl);
             return null;
         }

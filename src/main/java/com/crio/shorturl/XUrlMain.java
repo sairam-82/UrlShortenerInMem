@@ -30,18 +30,20 @@ public class XUrlMain {
     System.out.println(url5);
     System.out.println(url6);
     System.out.println(urlNull);
-
     // Test out longURL lookup based on the shortURL input
     assert(xUrl.getUrl(url).equals("http://abc.com"));
     assert(xUrl.getUrl(url2).equals(xUrl.getUrl(url4)));
     assert(xUrl.getUrl(url5).equals("http://abc5.com"));
+    System.out.println("sairam"+xUrl.getUrl(url));
+    ;
     
     // Test out getHitCount() for a given long URL. 
     // Here the same long URL has been looked up 2 times as part of url2 & url4
     assert(xUrl.getHitCount("http://abc2.com").equals(2));
+    System.out.println(xUrl.getHitCount("http://abc2.com"));
     // Try to fetch hit count for a non existent long URL, should return 0 
     assert(xUrl.getHitCount("http://abcn.com").equals(0));
-
+    System.out.println(xUrl.getHitCount("http://abc.com"));
     // From the short URL url1, remove the common section (http://short.url/) and remove any non alphanumeric character
     String choppedUrl = url1.replace("http://short.url/", "").replaceAll("[^A-Za-z0-9]", "");
     System.out.println(choppedUrl);
